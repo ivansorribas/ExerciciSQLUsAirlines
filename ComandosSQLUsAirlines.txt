@@ -1,0 +1,63 @@
+Ejercicio 1, Desde la Tabla Fligths, este comando SQL:
+
+SELECT COUNT(idFlight) FROM flights
+
+
+Ejercicio 2, Desde la Tabla Fligths, este comando SQL:
+
+SELECT Origin, AVG(ArrDelay) as prom_arrivades , AVG(DepDelay) as prom_sortides
+FROM flights
+GROUP by Origin
+order by Origin ASC
+
+Ejercicio 3, 
+
+SELECT Origin, colYear,colMonth, ArrDelay * 1.0000 as promig_arrivades
+from flights
+order by Origin, colYear, colMonth
+
+paja mental que me hice:
+
+SELECT CONCAT(Origin, ",", colYear, ",", colMonth, ",", DayOfMonths, ",", ArrDelay)
+FROM flights
+ORDER BY colYear
+
+Ejercicio 4 
+
+SELECT d.city, t.colYear, t.colMonth, t.ArrDelay * 1.0000 as promig_arrivades
+from flights t
+LEFT JOIN usairports d
+ON IATA = Origin
+Order by d.city, t.colYear, t.colMonth
+
+Ejercicio 5
+
+SELECT UniqueCarrier, colYear, colMonth, AVG(DepDelay), sum(Cancelled) as cancelados
+from flights
+group by colYear,colMonth
+having cancelados>=1
+ORDER BY SUM(Cancelled) DESC
+
+Ejercciio 6
+
+SELECT TailNum, sum(Distance)
+from flights
+WHERE TailNum !=""
+group by TailNum
+Order by Sum(Distance) DESC
+LIMIT 10
+
+
+Ejercicio 7
+
+SELECT UniqueCarrier, avg(ArrDelay)
+from flights
+group by UniqueCarrier
+having Avg(ArrDelay)>=10
+order by Avg(ArrDelay) DESCC
+
+
+
+
+
+
